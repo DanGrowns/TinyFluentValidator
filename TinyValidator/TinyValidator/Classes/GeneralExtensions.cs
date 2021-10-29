@@ -19,5 +19,9 @@ namespace TinyValidator.Classes
 
             return modelWithSpaces;
         }
+        
+        // TODO General: Must
+        // TODO: Expanded extension types
+        // TODO: Any code sharing cleanup
     }
 }

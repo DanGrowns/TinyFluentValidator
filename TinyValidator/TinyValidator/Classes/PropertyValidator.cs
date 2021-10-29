@@ -22,7 +22,7 @@ namespace TinyValidator.Classes
             var defaultValue = Activator.CreateInstance(MemberValueType);
             return MemberValue.Equals(defaultValue);
         }
-        
+
         public TProperty GetPropertyValue() => (TProperty) MemberValue;
         
         public void AddError(string errorMessage)
@@ -60,6 +60,37 @@ namespace TinyValidator.Classes
                 return this;
 
             if (MemberValue == null)
+                AddError(errorMessage ?? "[PropertyName] cannot be null.");
+            
+            return this;
+        }
+
+        public IPropertyValidator<T, TProperty> Empty(string errorMessage = null)
+        {
+            var hasError = false;
+            
+            if (MemberValue is string stringValue)
+            {
+                stringValue = stringValue.Trim();
+                if (string.IsNullOrEmpty(stringValue) == false)
+                    hasError = true;
+            }
+            else
+            {
+                hasError = ValueIsDefault() == false;
+            }
+
+            if (hasError)
+                AddError(errorMessage ?? "[PropertyName] must be empty.");
+            
+            return this;
+        }
+        
+        public IPropertyValidator<T, TProperty> Null(string errorMessage = null)
+        {
+            var hasError = MemberValueType.IsValueType || MemberValue != null;
+
+            if (hasError)
                 AddError(errorMessage ?? "[PropertyName] cannot be null.");
             
             return this;
