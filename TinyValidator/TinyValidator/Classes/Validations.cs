@@ -11,15 +11,12 @@ namespace TinyValidator.Classes
     {
         private List<string> Errors { get; }
         private T ValidationObject { get; set; }
-        public string MemberName { get; set; }
-        public Type MemberValueType { get; set; }
-        public object MemberValue { get; set; }
+        private string MemberName { get; set; }
+        private Type MemberValueType { get; set; }
+        private object MemberValue { get; set; }
 
-        public Validations()
-        {
-            Errors = new List<string>();
-        }
-
+        public Validations() => Errors = new List<string>();
+        
         private bool ValueIsDefault()
         {
             if (MemberValueType.IsValueType == false) 
@@ -27,6 +24,14 @@ namespace TinyValidator.Classes
             
             var defaultValue = Activator.CreateInstance(MemberValueType);
             return MemberValue.Equals(defaultValue);
+        }
+
+        private void AddError(string errorMessage)
+        {
+            if (errorMessage.Contains("[PropertyName]"))
+                errorMessage = errorMessage.Replace($"[PropertyName]", $"'{MemberName}'");
+            
+            Errors.Add(errorMessage);
         }
         
         public IValidator<T> RuleFor<TValue>(Expression<Func<T, TValue>> expression)
@@ -47,6 +52,7 @@ namespace TinyValidator.Classes
             
             if (MemberValue is string stringValue)
             {
+                stringValue = stringValue.Trim();
                 if (string.IsNullOrEmpty(stringValue))
                     hasError = true;
             }
@@ -56,11 +62,19 @@ namespace TinyValidator.Classes
             }
 
             if (hasError)
-            {
-                errorMessage = errorMessage.Replace($"[PropertyName]", $"'{MemberName}'");
-                Errors.Add(errorMessage);
-            }
+                AddError(errorMessage);
+            
+            return this;
+        }
 
+        public IValidator<T> NotNull(string errorMessage = "[PropertyName] cannot be null.")
+        {
+            if (MemberValueType.IsValueType)
+                return this;
+
+            if (MemberValue == null)
+                AddError(errorMessage);
+            
             return this;
         }
 
