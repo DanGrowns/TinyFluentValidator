@@ -3,7 +3,7 @@ using TinyValidator.Interfaces;
 
 namespace TinyValidator.XUnitTests.Mocks
 {
-    public class MockValidatable : IValidationEntity<MockValidatable>
+    public class MockPrimitives : IValidationEntity<MockPrimitives>
     {
         public string Line1 { get; init; }
         public int Id { get; init; }
@@ -12,7 +12,7 @@ namespace TinyValidator.XUnitTests.Mocks
         public float Pi { get; set; }
         
         
-        public IReadOnlyList<string> StateIsValid(IValidator<MockValidatable> validator)
+        public IReadOnlyList<string> StateIsValid(IValidator<MockPrimitives> validator)
         {
             return validator.Start(this)
                 .RuleFor(x => x.Line1).NotEmpty()

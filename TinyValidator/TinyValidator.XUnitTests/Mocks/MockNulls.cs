@@ -3,11 +3,11 @@ using TinyValidator.Interfaces;
 
 namespace TinyValidator.XUnitTests.Mocks
 {
-    public class MockValidatableNulls : IValidationEntity<MockValidatableNulls>
+    public class MockNulls : IValidationEntity<MockNulls>
     {
         public string Line1 { get; init; }
 
-        public IReadOnlyList<string> StateIsValid(IValidator<MockValidatableNulls> validator)
+        public IReadOnlyList<string> StateIsValid(IValidator<MockNulls> validator)
         {
             return validator.Start(this)
                 .RuleFor(x => x.Line1).NotNull()

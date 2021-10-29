@@ -2,7 +2,7 @@
 
 namespace TinyValidator.Classes
 {
-    public static class ExtensionMethods
+    public static class GeneralExtensions
     {
         public static string SplitPascalCaseToString(this string pascalCaseStr, bool usePluralName = false)
         {
