@@ -8,7 +8,7 @@ namespace TinyValidator.XUnitTests.Tests
         public Fluent()
         {
             RuleFor(x => x.Line1).NotEmpty();
-            RuleFor(x => x.Id).GreaterThan(0);
+            //RuleFor(x => x.Id).
 
         }
     }

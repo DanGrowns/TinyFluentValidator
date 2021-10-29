@@ -14,5 +14,16 @@ namespace TinyValidator.Classes
 
             return validator;
         }
+        
+        public static IPropertyValidator<T, string> MinimumLength<T>(this IPropertyValidator<T, string> validator, 
+            int length, string errorMessage = null)
+        {
+            var value = validator.GetPropertyValue() ?? "";
+            
+            if (value.Length < length)
+                validator.AddError(errorMessage ?? $"[PropertyName] must be at least {value} characters in length.");
+
+            return validator;
+        }
     }
 }
