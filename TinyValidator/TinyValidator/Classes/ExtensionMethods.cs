@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace TinyValidator
+namespace TinyValidator.Classes
 {
     public static class ExtensionMethods
     {

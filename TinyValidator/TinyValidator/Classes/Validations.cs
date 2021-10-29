@@ -1,17 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using TinyValidator.Interfaces;
 
-namespace TinyValidator
+namespace TinyValidator.Classes
 {
-    public interface IValidator<T>
-    {
-        IValidator<T> Start(T item);
-        IValidator<T> RuleFor(Expression<Func<T, string>> expression);
-        IValidator<T> NotEmpty(string errorMessage = "[PropertyName] cannot be empty.");
-        IReadOnlyList<string> ToList();
-    }
-    
     // TODO: Preventing things like RuleFor being called twice in a row.
     // Make sure all state is cleared if it is called incorrectly in a chain
     public class Validations<T> : IValidator<T>
