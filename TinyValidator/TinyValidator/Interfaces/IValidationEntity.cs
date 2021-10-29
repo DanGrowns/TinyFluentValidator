@@ -2,8 +2,8 @@
 
 namespace TinyValidator.Interfaces
 {
-    public interface IValidationEntity
+    public interface IValidationEntity<T>
     {
-        IReadOnlyList<string> StateIsValid();
+        IReadOnlyList<string> StateIsValid(IValidator<T> validator);
     }
 }
