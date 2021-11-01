@@ -7,7 +7,8 @@ namespace TinyValidator.XUnitTests.Tests
     {
         public Fluent()
         {
-            //RuleFor(x => x.Line1).
+
+            RuleFor(x => x.Line1).Must(x => x.Contains("T"));
             //RuleFor(x => x.Id).
 
         }

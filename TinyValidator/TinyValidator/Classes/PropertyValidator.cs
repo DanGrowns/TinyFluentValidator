@@ -95,5 +95,14 @@ namespace TinyValidator.Classes
             
             return this;
         }
+
+        public IPropertyValidator<T, TProperty> Must(Func<TProperty, bool> predicate, string errorMessage = null)
+        {
+            var result = predicate.Invoke(GetPropertyValue());
+            if (result == false)
+                AddError(errorMessage ?? "[PropertyName] did not meet the required condition.");
+
+            return this;
+        }
     }
 }

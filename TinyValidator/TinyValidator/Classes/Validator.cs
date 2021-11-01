@@ -15,7 +15,6 @@ namespace TinyValidator.Classes
         
         public Validator() => Errors = new List<string>();
 
-
         public IValidator<T> Start(T item)
         {
             ValidationObject = item;
