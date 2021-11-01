@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyFluentValidator", "TinyFluentValidator\TinyFluentValidator.csproj", "{983C9C7A-F69C-4C66-8683-ADA5ABD8AA27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyFluentValidator.XUnitTests", "TinyFluentValidator.XUnitTests\TinyFluentValidator.XUnitTests.csproj", "{356B2DE9-EAF9-41FF-BD74-82B21AF46B28}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{983C9C7A-F69C-4C66-8683-ADA5ABD8AA27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{983C9C7A-F69C-4C66-8683-ADA5ABD8AA27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{983C9C7A-F69C-4C66-8683-ADA5ABD8AA27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{983C9C7A-F69C-4C66-8683-ADA5ABD8AA27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{356B2DE9-EAF9-41FF-BD74-82B21AF46B28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{356B2DE9-EAF9-41FF-BD74-82B21AF46B28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{356B2DE9-EAF9-41FF-BD74-82B21AF46B28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{356B2DE9-EAF9-41FF-BD74-82B21AF46B28}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
