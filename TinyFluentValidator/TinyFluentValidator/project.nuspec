@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <version>0.1.0</version>
+        <authors>Dan Growns</authors>
+        <owners>Dan Growns</owners>
+        <id>TinyFluentValidator</id>
+        <title>TinyFluentValidator</title>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <projectUrl>https://github.com/DanGrowns/TinyFluentValidator</projectUrl>
+        <description>A small fluent style validator for validating models behind an always valid domain boundary.</description>
+    </metadata>
+    <files>
+        <file src="bin\Debug\net5.0\*.dll" target="lib\net5.0" />
+        <file src="bin\Debug\net5.0\*.pdb" target="lib\net5.0" />
+    </files>
+</package>
