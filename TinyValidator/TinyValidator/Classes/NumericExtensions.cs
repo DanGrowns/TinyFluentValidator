@@ -9,7 +9,8 @@ namespace TinyValidator.Classes
             TProperty value, string errorMessage = null) 
             where TProperty : IComparable<TProperty>
         {
-            if (validator.GetPropertyValue().CompareTo(value) > 0)
+            var result = validator.GetPropertyValue().CompareTo(value);
+            if (result < 1)
                 validator.AddError(errorMessage ?? $"[PropertyName] must be greater than {value}.");
 
             return validator;
@@ -19,7 +20,8 @@ namespace TinyValidator.Classes
             TProperty value, string errorMessage = null)
             where TProperty : IComparable<TProperty>
         {
-            if (validator.GetPropertyValue().CompareTo(value) >= 0)
+            var result = validator.GetPropertyValue().CompareTo(value);
+            if (result < 0)
                 validator.AddError(errorMessage ?? $"[PropertyName] must be greater than or equal to {value}.");
 
             return validator;
@@ -29,7 +31,8 @@ namespace TinyValidator.Classes
             TProperty value, string errorMessage = null)
             where TProperty : IComparable<TProperty>
         {
-            if (validator.GetPropertyValue().CompareTo(value) < 0)
+            var result = validator.GetPropertyValue().CompareTo(value);
+            if (result >= 0)
                 validator.AddError(errorMessage ?? $"[PropertyName] must be less than {value}.");
 
             return validator;
@@ -39,7 +42,8 @@ namespace TinyValidator.Classes
             TProperty value, string errorMessage = null)
             where TProperty : IComparable<TProperty>
         {
-            if (validator.GetPropertyValue().CompareTo(value) <= 0)
+            var result = validator.GetPropertyValue().CompareTo(value);
+            if (result > 0)
                 validator.AddError(errorMessage ?? $"[PropertyName] must be less than or equal to {value}.");
 
             return validator;
@@ -54,9 +58,13 @@ namespace TinyValidator.Classes
                     "Validating with InclusiveBetween cannot have the from value as less than the to value");
             
             var value = validator.GetPropertyValue();
-            if (value.CompareTo(from) >= 0 && value.CompareTo(to) <= 0)
-                validator.AddError(errorMessage ?? $"[PropertyName] must be greater than or equal to {from} and less than or equal to {to}.");
+            var fromCompare = value.CompareTo(from);
+            var toCompare = value.CompareTo(to);
 
+            if (fromCompare is 0 or 1 && toCompare is 0 or -1)
+                return validator;
+            
+            validator.AddError(errorMessage ?? $"[PropertyName] must be greater than or equal to {from} and less than or equal to {to}.");
             return validator;
         }
         
@@ -69,9 +77,13 @@ namespace TinyValidator.Classes
                     "Validating with InclusiveBetween cannot have the from value as less than the to value");
             
             var value = validator.GetPropertyValue();
-            if (value.CompareTo(from) > 0 && value.CompareTo(to) < 0)
-                validator.AddError(errorMessage ?? $"[PropertyName] must be greater than {from} and less than {to}.");
+            var fromCompare = value.CompareTo(from);
+            var toCompare = value.CompareTo(to);
 
+            if (fromCompare is 1 && toCompare is -1)
+                return validator;
+            
+            validator.AddError(errorMessage ?? $"[PropertyName] must be greater than {from} and less than {to}.");
             return validator;
         }
     }
