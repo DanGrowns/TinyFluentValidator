@@ -39,8 +39,7 @@ namespace TinyValidator.Classes
             
             if (MemberValue is string stringValue)
             {
-                stringValue = stringValue.Trim();
-                if (string.IsNullOrEmpty(stringValue))
+                if (string.IsNullOrWhiteSpace(stringValue))
                     hasError = true;
             }
             else
@@ -71,8 +70,7 @@ namespace TinyValidator.Classes
             
             if (MemberValue is string stringValue)
             {
-                stringValue = stringValue.Trim();
-                if (string.IsNullOrEmpty(stringValue) == false)
+                if (string.IsNullOrWhiteSpace(stringValue) == false)
                     hasError = true;
             }
             else
@@ -88,10 +86,19 @@ namespace TinyValidator.Classes
         
         public IPropertyValidator<T, TProperty> Null(string errorMessage = null)
         {
-            var hasError = MemberValueType.IsValueType || MemberValue != null;
+            bool hasError;
+            
+            if (MemberValue is string _)
+            {
+                hasError = MemberValue != null;
+            }
+            else
+            {
+                hasError = MemberValueType.IsValueType || MemberValue != null;
+            }
 
             if (hasError)
-                AddError(errorMessage ?? "[PropertyName] cannot be null.");
+                AddError(errorMessage ?? "[PropertyName] must be null.");
             
             return this;
         }
