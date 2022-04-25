@@ -10,7 +10,7 @@ namespace TinyFluentValidator.Classes
             var value = validator.GetPropertyValue() ?? "";
             
             if (value.Length > length)
-                validator.AddError(errorMessage ?? $"[PropertyName] cannot exceed {value} characters.");
+                validator.AddError(errorMessage ?? $"[PropertyName] cannot exceed {length} characters.");
 
             return validator;
         }
@@ -21,7 +21,7 @@ namespace TinyFluentValidator.Classes
             var value = validator.GetPropertyValue() ?? "";
             
             if (value.Length < length)
-                validator.AddError(errorMessage ?? $"[PropertyName] must be at least {value} characters in length.");
+                validator.AddError(errorMessage ?? $"[PropertyName] must be at least {length} characters in length.");
 
             return validator;
         }

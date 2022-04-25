@@ -1,4 +1,6 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
+using TinyFluentValidator.Interfaces;
 
 namespace TinyFluentValidator.Classes
 {
@@ -20,6 +22,20 @@ namespace TinyFluentValidator.Classes
             return modelWithSpaces;
         }
         
-        // TODO: Any code sharing cleanup
+        public static IPropertyValidator<T, TProperty> If<T, TProperty>(
+            this IPropertyValidator<T, TProperty> validator,
+            bool condition,
+            Func<TProperty, bool> predicate,
+            string errorMessage)
+        {
+            var propertyValidator = (PropertyValidator<T, TProperty>)validator;
+
+            if (condition == false)
+                return propertyValidator;
+                
+            validator.Must(predicate, errorMessage);
+            
+            return propertyValidator;
+        }
     }
 }

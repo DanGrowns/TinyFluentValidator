@@ -9,6 +9,7 @@ namespace TinyFluentValidator.Interfaces
         IPropertyValidator<T, TProperty> Empty(string errorMessage = null);
         IPropertyValidator<T, TProperty> Null(string errorMessage = null);
         IPropertyValidator<T, TProperty> Must(Func<TProperty, bool> predicate, string errorMessage = null);
+        IPropertyValidator<T, TProperty> Must(Func<TProperty, bool> predicate, Func<string> errorMessageCallback);
         TProperty GetPropertyValue();
         void AddError(string errorMessage);
     }

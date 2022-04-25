@@ -1,8 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <PackageVersion>0.1.0</PackageVersion>
-        <TargetFrameworks>net5.0;netstandard2.1</TargetFrameworks>
+        <PackageVersion>0.1.3</PackageVersion>
+        <Version>0.1.0</Version>
+        <Authors>DanGrowns</Authors>
+        <TargetFramework>net5.0</TargetFramework>
+        <PackageLicenseFile>Licence.txt</PackageLicenseFile>
+        <RepositoryUrl>https://github.com/DanGrowns/TinyFluentValidator</RepositoryUrl>
     </PropertyGroup>
+
+    <ItemGroup>
+      <None Include="Licence.txt">
+        <Pack>True</Pack>
+        <PackagePath></PackagePath>
+      </None>
+    </ItemGroup>
 
 </Project>
