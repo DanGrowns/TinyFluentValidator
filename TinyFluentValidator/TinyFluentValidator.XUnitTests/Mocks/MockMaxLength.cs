@@ -4,18 +4,18 @@ using TinyFluentValidator.Interfaces;
 
 namespace TinyFluentValidator.XUnitTests.Mocks
 {
-    public class MockMaxLength : IValidationEntity<MockMaxLength>
+    public class MockMaxLength : IValidationTarget<MockMaxLength>
     {
         public string Line1 { get; init; }
         public int Id { get; set; }
 
-        public IReadOnlyList<string> StateIsValid(IValidator<MockMaxLength> validator)
+        public ValidationResult IsValid(IValidator<MockMaxLength> validator)
         {
             return validator.Start(this)
                 .RuleFor(x => x.Line1).MaximumLength(4)
                 // Confirmed that below throws design time error as expected
                 //.RuleFor(x => x.Id).MaximumLength(4)
-                .ToList();
+                .GetResult();
         }
     }
 }

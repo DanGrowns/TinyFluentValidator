@@ -1,6 +1,8 @@
-﻿using AutoFixture.Xunit2;
+﻿using System.Collections.Generic;
+using AutoFixture.Xunit2;
 using FluentAssertions;
 using TinyFluentValidator.Classes;
+using TinyFluentValidator.Interfaces;
 using TinyFluentValidator.XUnitTests.Mocks;
 using Xunit;
 
@@ -24,8 +26,8 @@ namespace TinyFluentValidator.XUnitTests.Tests
                 Pi = pi
             };
             
-            var errors = mock.StateIsValid(new Validator<MockPrimitives>());
-            errors.Count.Should().Be(expectedErrors);
+            var result = mock.IsValid(new Validator<MockPrimitives>());
+            result.Errors.Count.Should().Be(expectedErrors);
         }
 
         [Theory]
@@ -41,9 +43,8 @@ namespace TinyFluentValidator.XUnitTests.Tests
                 SubClass = createSubClass ? new MockSubClass() : null
             };
             
-            var errors = mock.StateIsValid(new Validator<MockNotNull>());
-
-            errors.Count.Should().Be(expectedErrors);
+            var result = mock.IsValid(new Validator<MockNotNull>());
+            result.Errors.Count.Should().Be(expectedErrors);
         }
         
         [Theory]
@@ -61,9 +62,8 @@ namespace TinyFluentValidator.XUnitTests.Tests
                 SubClass = createSubClass ? new MockSubClass() : null
             };
             
-            var errors = mock.StateIsValid(new Validator<MockNull>());
-
-            errors.Count.Should().Be(expectedErrors);
+            var result = mock.IsValid(new Validator<MockNull>());
+            result.Errors.Count.Should().Be(expectedErrors);
         }
 
         [Theory]
@@ -74,9 +74,9 @@ namespace TinyFluentValidator.XUnitTests.Tests
         public void MaxLength_Ok(string line1, int expectedErrors)
         {
             var mock = new MockMaxLength { Line1 = line1 };
-            var errors = mock.StateIsValid(new Validator<MockMaxLength>());
-
-            errors.Count.Should().Be(expectedErrors);
+            
+            var result = mock.IsValid(new Validator<MockMaxLength>());
+            result.Errors.Count.Should().Be(expectedErrors);
         }
 
         [Theory]
@@ -93,8 +93,8 @@ namespace TinyFluentValidator.XUnitTests.Tests
                 SubClass = createSubClass ? new MockSubClass() : null
             };
 
-            var errors = mock.StateIsValid(new Validator<MockEmpty>());
-            errors.Count.Should().Be(expectedErrors);
+            var result = mock.IsValid(new Validator<MockEmpty>());
+            result.Errors.Count.Should().Be(expectedErrors);
         }
         
         [Theory]
@@ -107,8 +107,8 @@ namespace TinyFluentValidator.XUnitTests.Tests
                 SubClass = createSubClass ? new MockSubClass() : null
             };
 
-            var errors = mock.StateIsValid(new Validator<MockNotEmpty>());
-            errors.Count.Should().Be(expectedErrors);
+            var result = mock.IsValid(new Validator<MockNotEmpty>());
+            result.Errors.Count.Should().Be(expectedErrors);
         }
         
         [Theory]
@@ -121,8 +121,8 @@ namespace TinyFluentValidator.XUnitTests.Tests
         {
             var mock = new MockMust {Line1 = value};
             
-            var errors = mock.StateIsValid(new Validator<MockMust>());
-            errors.Count.Should().Be(expectedErrors);
+            var result = mock.IsValid(new Validator<MockMust>());
+            result.Errors.Count.Should().Be(expectedErrors);
         }
     }
 }

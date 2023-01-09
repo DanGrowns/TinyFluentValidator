@@ -15,8 +15,8 @@ namespace TinyFluentValidator.XUnitTests.Tests
         {
             var mock = new MockGreaterThan { Value = value, DoubleVal = doubleVal};
             
-            var errors = mock.StateIsValid(new Validator<MockGreaterThan>());
-            errors.Count.Should().Be(expectedErrors);
+            var result = mock.IsValid(new Validator<MockGreaterThan>());
+            result.Errors.Count.Should().Be(expectedErrors);
         }
         
         [Theory]
@@ -28,8 +28,8 @@ namespace TinyFluentValidator.XUnitTests.Tests
         {
             var mock = new MockGtEqual { Value = value, DoubleVal = doubleVal };
             
-            var errors = mock.StateIsValid(new Validator<MockGtEqual>());
-            errors.Count.Should().Be(expectedErrors);
+            var result = mock.IsValid(new Validator<MockGtEqual>());
+            result.Errors.Count.Should().Be(expectedErrors);
         }
         
         [Theory]
@@ -40,8 +40,8 @@ namespace TinyFluentValidator.XUnitTests.Tests
         {
             var mock = new MockLessThan { Value = value, DoubleVal = doubleVal };
             
-            var errors = mock.StateIsValid(new Validator<MockLessThan>());
-            errors.Count.Should().Be(expectedErrors);
+            var result = mock.IsValid(new Validator<MockLessThan>());
+            result.Errors.Count.Should().Be(expectedErrors);
         }
         
         [Theory]
@@ -54,8 +54,8 @@ namespace TinyFluentValidator.XUnitTests.Tests
         {
             var mock = new MockLtEqual { Value = value, DoubleVal = doubleVal };
             
-            var errors = mock.StateIsValid(new Validator<MockLtEqual>());
-            errors.Count.Should().Be(expectedErrors);
+            var result = mock.IsValid(new Validator<MockLtEqual>());
+            result.Errors.Count.Should().Be(expectedErrors);
         }
         
         [Theory]
@@ -68,8 +68,8 @@ namespace TinyFluentValidator.XUnitTests.Tests
         {
             var mock = new MockInclusive { Value = value, DoubleVal = doubleVal };
             
-            var errors = mock.StateIsValid(new Validator<MockInclusive>());
-            errors.Count.Should().Be(expectedErrors);
+            var result = mock.IsValid(new Validator<MockInclusive>());
+            result.Errors.Count.Should().Be(expectedErrors);
         }
         
         [Theory]
@@ -81,8 +81,8 @@ namespace TinyFluentValidator.XUnitTests.Tests
         {
             var mock = new MockExclusive { Value = value, DoubleVal = doubleVal };
             
-            var errors = mock.StateIsValid(new Validator<MockExclusive>());
-            errors.Count.Should().Be(expectedErrors);
+            var result = mock.IsValid(new Validator<MockExclusive>());
+            result.Errors.Count.Should().Be(expectedErrors);
         }
     }
 }

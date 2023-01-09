@@ -4,17 +4,17 @@ using TinyFluentValidator.Interfaces;
 
 namespace TinyFluentValidator.XUnitTests.Mocks
 {
-    public class MockGtEqual : IValidationEntity<MockGtEqual>
+    public class MockGtEqual : IValidationTarget<MockGtEqual>
     {
         public int Value { get; init; }
         public double DoubleVal { get; set; }
 
-        public IReadOnlyList<string> StateIsValid(IValidator<MockGtEqual> validator)
+        public ValidationResult IsValid(IValidator<MockGtEqual> validator)
         {
             return validator.Start(this)
                 .RuleFor(x => x.Value).GreaterThanOrEqualTo(1)
                 .RuleFor(x => x.DoubleVal).GreaterThanOrEqualTo(1.0)
-                .ToList();
+                .GetResult();
         }
     }
 }

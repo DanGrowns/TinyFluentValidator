@@ -6,7 +6,7 @@ namespace TinyFluentValidator.Classes
 {
     public static class GeneralExtensions
     {
-        public static string SplitPascalCaseToString(this string pascalCaseStr, bool usePluralName = false)
+        internal static string SplitPascalCaseToString(this string pascalCaseStr)
         {
             var r = new Regex(@"
                 (?<=[A-Z])(?=[A-Z][a-z]) |
@@ -14,11 +14,6 @@ namespace TinyFluentValidator.Classes
                  (?<=[A-Za-z])(?=[^A-Za-z])", RegexOptions.IgnorePatternWhitespace);
 
             var modelWithSpaces = r.Replace(pascalCaseStr, " ");
-            var finalChar = pascalCaseStr[^1..];
-            
-            if (usePluralName)
-                return finalChar == "s" ? $"{modelWithSpaces}es" : $"{modelWithSpaces}s";
-
             return modelWithSpaces;
         }
         

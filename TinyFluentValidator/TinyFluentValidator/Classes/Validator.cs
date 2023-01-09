@@ -18,19 +18,11 @@ namespace TinyFluentValidator.Classes
         public IValidator<T> Start(T item)
         {
             ValidationObject = item;
+            Errors.Clear();
+            
             return this;
         }
-        
-        public IReadOnlyList<string> ToList()
-        {
-            ValidationObject = default;
-            MemberName = null;
-            MemberValueType = null;
-            MemberValue = null;
-            
-            return Errors;
-        }
-        
+
         public IPropertyValidator<T, TProperty> RuleFor<TProperty>(Expression<Func<T, TProperty>> expression)
         {
             var body = (MemberExpression) expression.Body;
@@ -41,6 +33,16 @@ namespace TinyFluentValidator.Classes
             MemberValue = compiled.Invoke(ValidationObject);
             
             return new PropertyValidator<T, TProperty>(this);
+        }
+
+        public ValidationResult GetResult()
+        {
+            ValidationObject = default;
+            MemberName = null;
+            MemberValueType = null;
+            MemberValue = null;
+            
+            return new ValidationResult(Errors);
         }
     }
 }

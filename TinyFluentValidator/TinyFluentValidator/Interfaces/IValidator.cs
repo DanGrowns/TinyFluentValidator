@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
+using TinyFluentValidator.Classes;
 
 namespace TinyFluentValidator.Interfaces
 {
@@ -8,6 +8,6 @@ namespace TinyFluentValidator.Interfaces
     {
         IValidator<T> Start(T item);
         IPropertyValidator<T, TProperty> RuleFor<TProperty>(Expression<Func<T, TProperty>> expression);
-        IReadOnlyList<string> ToList();
+        ValidationResult GetResult();
     }
 }
